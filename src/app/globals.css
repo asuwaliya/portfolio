@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+@import "@fontsource-variable/dm-sans";
+
+/* ------------------------------------------------------------------
+   Design tokens — mirrored from the Figma "Portfolio Light" collection.
+   Change a value here and it updates everywhere on the site.
+------------------------------------------------------------------- */
+@theme {
+  --color-paper: #f7f5f0;
+  --color-paper-2: #eeebe3;
+  --color-white: #ffffff;
+  --color-ink: #141414;
+  --color-muted: #6e6b66;
+  --color-line: #e1ddd3;
+  --color-accent: #3346ff;
+  --color-available: #21b866;
+
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --tracking-label: 0.12em;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-paper text-ink font-sans;
+  }
+  ::selection {
+    @apply bg-accent text-white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Large editorial headlines */
+@utility display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+/* Scroll-reveal animation (see components/ui/Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

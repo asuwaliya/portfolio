@@ -1,0 +1,27 @@
+{
+  "name": "aman-suwaliya-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio website of Aman Suwaliya — Senior UI/UX Designer",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.1.0",
+    "@fontsource/instrument-serif": "^5.1.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0"
+  }
+}
