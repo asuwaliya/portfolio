@@ -1,130 +1,65 @@
-# Aman Suwaliya — Portfolio
+# Aman Suwaliya — Portfolio website (Netlify package)
 
-Personal portfolio website built from the Figma design
-([Portfolio Final, Desktop 1440](https://www.figma.com/design/XJbCHhgP7FumiXwAKZhaFr/Aman-Po?node-id=7-75)).
+A static, responsive website: the home page plus three case studies.
 
-**Stack:** Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · static export
+| Page | File | Live URL after deploy |
+|---|---|---|
+| Home | `index.html` | `/` |
+| CADEX Legal | `cadex.html` | `/cadex` |
+| SITA Travart | `sita.html` | `/sita` |
+| ORYX | `oryx.html` | `/oryx` |
 
----
-
-## Run it locally
-
-Requires **Node.js 18.18+** (20 or 22 recommended).
-
-```bash
-npm install
-npm run dev        # http://localhost:3000
-```
-
-Build a production version:
-
-```bash
-npm run build      # outputs a static site to /out
-```
+No build step is needed. Upload the folder as it is.
 
 ---
 
-## Editing content (no coding needed)
+## Step 1 — Export the images from Figma (one click)
 
-**All text, links and lists live in one file: `src/content/site.ts`.**
+Every image the site needs already has export settings and the right name in your Figma file.
 
-| To change…                         | Edit in `site.ts`               |
-| ---------------------------------- | ------------------------------- |
-| Name, email, phone, availability   | `profile`                       |
-| LinkedIn / Behance / Dribbble URLs | `social`                        |
-| Hero headline & intro              | `hero`                          |
-| About text & facts                 | `about`                         |
-| Projects                           | `projects.items`                |
-| Skills                             | `skills.groups`                 |
-| Jobs                               | `experience.items`              |
-| Education                          | `education.items`               |
-| Final call-to-action               | `cta`                           |
-| Browser title / SEO description    | `seo`                           |
+1. Open the Figma file **Aman-Po** and go to the **Portfolio** page.
+2. Click an empty spot on the canvas so nothing is selected.
+3. Press **Ctrl + Shift + E** (Windows) or **Cmd + Shift + E** (Mac). You can also use **File → Export…**.
+4. Figma lists **74 items** named like `home/avatar`, `cadex/v01`, `sita/v01`, `oryx/v01`. Click **Export**.
+5. Choose this package's **`assets`** folder as the destination.
 
-**Formatting tips**
+Figma creates the `home`, `cadex`, `sita` and `oryx` subfolders automatically. The full list of expected files is in `assets/EXPECTED_FILES.txt`.
 
-- `\n` makes a line break: `"Hello, I’m\nAman."`
-- Wrap words in `{curly braces}` to make them blue italic: `"people {enjoy} using."`
+> Tip: the images export at 2× for sharp screens. If the upload feels heavy, you can compress the JPGs with a tool like Squoosh or TinyJPG first. The file names must stay the same.
 
-**Replace files**
+## Step 2 — Add your résumé
 
-- Photo → `public/images/aman-suwaliya.jpg` (square, at least 600×600)
-- Résumé → `public/resume/Aman-Suwaliya-Resume.pdf`
+Put your CV in the root of this folder as **`resume.pdf`**. Both "Download résumé" buttons link to it.
 
----
+## Step 3 — Update your social links (2 minutes)
 
-## Changing the design
+Your Behance and Dribbble profile URLs aren't in the Figma file, so they currently point to the sites' home pages. Search the HTML files for `behance.net/` and `dribbble.com/` and replace them with your profile links. LinkedIn is already set to `linkedin.com/in/aman-suwaliya`; check that it's correct.
 
-Colors and fonts are defined once in **`src/app/globals.css`** inside `@theme`,
-mirroring the Figma "Portfolio Light" tokens:
+## Step 4 — Deploy on Netlify
 
-| Token          | Value     | Use                  |
-| -------------- | --------- | -------------------- |
-| `paper`        | `#F7F5F0` | Page background      |
-| `paper-2`      | `#EEEBE3` | Alternate background |
-| `ink`          | `#141414` | Text                 |
-| `muted`        | `#6E6B66` | Secondary text       |
-| `line`         | `#E1DDD3` | Hairline dividers    |
-| `accent`       | `#3346FF` | Brand blue           |
+1. Go to **app.netlify.com → Add new site → Deploy manually**.
+2. Drag and drop **this whole folder** (the one containing `index.html`) onto the upload area.
+3. Netlify gives you a live URL in a few seconds. Rename it under **Site configuration → Change site name**, or connect your own domain under **Domain management**.
 
-Fonts: **Instrument Serif** (headlines) and **DM Sans** (body), self-hosted via Fontsource.
+To update the site later, drag the updated folder onto **Deploys** for the same site.
 
 ---
 
-## Project structure
+## What's inside
 
 ```
-src/
-├── app/
-│   ├── layout.tsx          # <html>, SEO metadata
-│   ├── page.tsx            # Section order of the page
-│   ├── globals.css         # Design tokens, fonts, animations
-│   └── icon.svg            # Favicon
-├── content/
-│   └── site.ts             # ← ALL website content
-├── components/
-│   ├── sections/           # One file per page section
-│   │   ├── Header.tsx      ├── Skills.tsx
-│   │   ├── Hero.tsx        ├── Experience.tsx
-│   │   ├── About.tsx       ├── Education.tsx
-│   │   ├── Projects.tsx    ├── ContactInfo.tsx
-│   │   ├── CTA.tsx         └── Footer.tsx
-│   ├── ui/                 # Reusable building blocks
-│   │   ├── Button.tsx      # Pill buttons (4 variants)
-│   │   ├── TextLink.tsx    # Underlined link with arrow
-│   │   ├── Section.tsx     # Container, SectionLabel, SectionHeading
-│   │   ├── Reveal.tsx      # Scroll fade-in animation
-│   │   └── Icon.tsx        # SVG icons
-│   └── visuals/
-│       └── ProjectVisual.tsx  # Coded project thumbnails
-└── lib/
-    └── richText.tsx        # \n and {accent} formatting helper
-public/
-├── images/aman-suwaliya.jpg
-└── resume/Aman-Suwaliya-Resume.pdf
+index.html          Home page
+cadex.html          Case study — CADEX Legal
+sita.html           Case study — SITA Travart
+oryx.html           Case study — ORYX
+styles.css          All styles (portfolio colours, Instrument Serif + DM Sans)
+404.html            "Page not found" page
+favicon.svg         Browser tab icon
+netlify.toml        Netlify settings (caching, /work/<name> shortcut links)
+robots.txt
+assets/             Images (export from Figma, see Step 1)
 ```
 
-**Reorder or remove sections** by editing the list in `src/app/page.tsx`.
+**Navigation:** the project cards on the home page open each case study. Inside a case study, "All work" and the logo return home, and "Read next case study" cycles CADEX → SITA → ORYX → CADEX.
 
-**Use real project screenshots:** add images to `public/images/`, add an `image`
-field to each project in `site.ts`, and render `<Image src={p.image} … />`
-in `Projects.tsx` instead of `<ProjectVisual />`.
-
----
-
-## Deploy
-
-The site exports as plain static files, so it runs anywhere:
-
-- **Vercel:** import the repo → Deploy (zero config)
-- **Netlify:** build command `npm run build`, publish directory `out`
-- **GitHub Pages / any host:** upload the contents of `out/`
-
----
-
-## Before going live — checklist
-
-- [ ] Set real Behance & Dribbble URLs in `social`
-- [ ] Link each project's `href` to its case study (currently `#`)
-- [ ] Review the one-line descriptions in `experience.items`
-- [ ] Add `metadataBase: new URL("https://your-domain.com")` in `layout.tsx` once you have a domain
+**Responsive:** the layout adapts from large desktop down to mobile (390 px).
